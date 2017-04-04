@@ -19,8 +19,9 @@ def getprossimolink(pagina):
     return url,finequote            
 
 #procedura per la stampa di tutti i links
+#cicla fino al momento in cui non trovi il valore None
 def stampatuttiilinks(pagina):
-    #cicla fino al momento in cui non trovi il valore None (non ci sono più url)
+
     while True:
         url,posfinale = getprossimolink(pagina)
         if url:
