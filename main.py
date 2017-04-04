@@ -1,3 +1,5 @@
+#programma crawler per la cattura dei links. Si tratta di una prima versione di test.
+
 def get_page(url):
 	try:
 	    import urllib
@@ -6,7 +8,7 @@ def get_page(url):
 	except:
 	    return "error"
 
-
+#procedura per la ricerca dei links tramite la string a <a href
 def getprossimolink(pagina):
     posiniziale = pagina.find('<a href=')
     if posiniziale==-1:
@@ -16,6 +18,7 @@ def getprossimolink(pagina):
     url = pagina[inizioquote+1:finequote]
     return url,finequote            
 
+#procedura per la stampa di tutti i links
 def stampatuttiilinks(pagina):
     while True:
         url,posfinale = getprossimolink(pagina)
