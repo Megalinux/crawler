@@ -25,7 +25,11 @@ def stampatuttiilinks(pagina):
     while True:
         url,posfinale = getprossimolink(pagina)
         if url:
-            print "Link trovato:"+url
+            if url[0] == '#':
+                print "Link interno alla pagina: "+url
+            else:    
+                print "Link esterno:"+url
+                
             pagina = pagina[posfinale:]
         else:
             break
