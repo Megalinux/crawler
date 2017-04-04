@@ -1,5 +1,5 @@
 #programma crawler per la cattura dei links. Si tratta di una prima versione di test.
-
+#procedura get_page per l'apertura della pagina web
 def get_page(url):
 	try:
 	    import urllib
@@ -20,10 +20,11 @@ def getprossimolink(pagina):
 
 #procedura per la stampa di tutti i links
 def stampatuttiilinks(pagina):
+    #cicla fino al momento in cui non trovi il valore None (non ci sono più url)
     while True:
         url,posfinale = getprossimolink(pagina)
         if url:
-            print url
+            print "Link trovato:"+url
             pagina = pagina[posfinale:]
         else:
             break
