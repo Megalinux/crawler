@@ -18,22 +18,52 @@ def getprossimolink(pagina):
     url = pagina[inizioquote+1:finequote]
     return url,finequote            
 
-#procedura per la stampa di tutti i links
-#cicla fino al momento in cui non trovi il valore None
-def stampatuttiilinks(pagina):
-
+#nella lista links registro tutti i link trovati nella pagina
+def get_tutti_i_links(pagina):
+    links = []
     while True:
-        url,posfinale = getprossimolink(pagina)
+        url,fineposizionelink = getprossimolink(pagina)
         if url:
-            if url[0] == '#':
-                print "Link interno alla pagina: "+url
-            else:    
-                print "Link esterno:"+url
-                
-            pagina = pagina[posfinale:]
+            links.append(url)
+            pagina = pagina[fineposizionelink:]
         else:
             break
+    return links
+
+# scorro gli elementi della lista dei links trovati e se questi non sono presenti nella prima lista (li aggiungo all'ultimo)
+def unione(p,q):
+    for e in q:
+        if e not in p:
+            p.append(e)
+
+#registro nella lista nonvisitati il seed (il sito origine). Nella lista visitati vi sono i
+#links gia visitati
+def crawler_engine_uno(seed):
+    nonvisitati = [seed]
+    visitati = []
+    while nonvisitati:
+        pagina = nonvisitati.pop()
+        if pagina not in visitati:
+            print"************************************"
+            print get_tutti_i_links(get_page(pagina))
+            print "link non visitati prima di unione"
+            print nonvisitati
+          
+            unione(nonvisitati,get_tutti_i_links(get_page(pagina)))
+            print "link non visitati dopo unione"
+            print nonvisitati
+        
+            visitati.append(pagina)
+            print "---------------------------------------"
+            print "visitati dopo aggiunta pagina visitata" 
+            print visitati
+            print"************************************"
 
 
 
-stampatuttiilinks(get_page('https://it.wikipedia.org/wiki/Linux'))
+    return visitati
+
+#Devo trovare un link che non sia troppo pieno di links!!!    
+
+print crawler_engine_uno('http://www.megaoverclock.it/')
+
