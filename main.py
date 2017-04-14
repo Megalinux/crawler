@@ -1,5 +1,6 @@
 #programma crawler per la cattura dei links. Si tratta di una prima versione di test.
 #procedura get_page per l'apertura della pagina web
+
 def get_page(url):
 	try:
 	    import urllib
@@ -51,7 +52,9 @@ def aggiungi_pagina_indice (indice,url,contenuto):
 def aggiungi_indice(indice,keyword,url):
         for entry in indice:  
             if entry[0] == keyword:
-                entry[1].append(url)
+              if url not in entry[1]: #elimina gli url duplicati per la stessa keyword
+                    entry[1].append(url)
+                  
 
         indice.append([keyword,[url]])
 
@@ -98,7 +101,11 @@ def crawler_engine_uno(seed):
     return indice
 
 #Devo trovare un link che non sia troppo pieno di links!!!    
-#Nella seguente aggiungete il primo link (http....) o seme da cui partire
-print crawler_engine_uno('xxxxxxxxxxxxxxxxx')
+#Nella seguente aggiungete il primo link (http....) o seme (xxxxxxxxxxxxx) da cui partire
+#con yyyyyy si intende la parola (o keyword) da ricercare tra gli url associati
+#Non funziona ancora correttamente sulle pagine con frame
+risultato = crawler_engine_uno("xxxxxxxxxxxxxxxxxxxxxxxx")
+print ricerca(risultato,"yyyyyy")
+
 
 
