@@ -141,8 +141,8 @@ def crawler_engine_uno(seed):
 #Nella seguente aggiungete il primo link (http....) o seme (xxxxxxxxxxxxx) da cui partire
 #con yyyyyy si intende la parola (o keyword) da ricercare tra gli url associati
 #Non funziona ancora correttamente sulle pagine con frame
-risultato = crawler_engine_uno("http://www.megalinux.it")
-print ricerca(risultato,'bootstrap')
+risultato = crawler_engine_uno("xxxxxxxxxxxxxxxx")
+print ricerca(risultato,'yyyyyyyyyyyyyyy')
 
 
 
