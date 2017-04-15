@@ -36,13 +36,50 @@ def unione(p,q):
     for e in q:
         if e not in p:
             p.append(e)
+#La seguente divide meglio le keyword trovate ed elimina i punti ed altri elementi presenti nella splitlist
+def dividi_contenuto(source,splitlist):
+ i=0
+ list=[]
+ posini=0
+ pos = 0
+
+ for e in source:
+    for y in splitlist:
+        if e==y:
+     
+       
+            pos=i
+            if source[posini:pos] in splitlist:
+                posini = i+1
+            else:    
+                print "Elemento char"+e
+                print "posini"+str(posini)
+                print "pos"+str(pos)
+                print "i"+str(i)
+                list.append(source[posini:pos])
+                posini = i+1
+    print "posini totale:" + str(posini)
+    print "pos totale:" +str(pos)
+    print "i totali"+str(i)    
+    print "totale lunghezza stringa:"+str(len(source))
+    if pos <> len(source)-1:
+        if i == len(source)-1:
+            list.append(source[posini:i+1])
+    i=i+1
+ return list
+
+
 
 
 # pagina, l'ho definita url....nel secondo campo di input della procedura seguente
 # Nella seguente procedura il contenuto trovato viene suddiviso in parole. Per ogni parola
 # si chiama la procedura aggiungi_indice che aggiunge o meno la parola e l'url all'indice
 def aggiungi_pagina_indice (indice,url,contenuto):
-       parole = contenuto.split()
+       #Utilizzo una procedura per dividere il contenuto a seconda di alcuni caratteri indicati in una stringa. Questo per determinare delle parole (keyword) migliori
+  
+       parole = dividi_contenuto(contenuto,'.,-+ <>/\;"=():[]%$&?^{}!|#_')
+       #parole = contenuto.split()
+       print parole
        for parola in parole:
                 aggiungi_indice(indice,parola,url)
 
@@ -104,8 +141,8 @@ def crawler_engine_uno(seed):
 #Nella seguente aggiungete il primo link (http....) o seme (xxxxxxxxxxxxx) da cui partire
 #con yyyyyy si intende la parola (o keyword) da ricercare tra gli url associati
 #Non funziona ancora correttamente sulle pagine con frame
-risultato = crawler_engine_uno("xxxxxxxxxxxxxxxxxxxxxxxx")
-print ricerca(risultato,"yyyyyy")
+risultato = crawler_engine_uno("http://www.megalinux.it")
+print ricerca(risultato,'bootstrap')
 
 
 
