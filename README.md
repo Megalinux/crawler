@@ -9,5 +9,5 @@
  facendo, si esegue una ricerca in profondità, ove i nuovi links vengono visitati per primi.
 
  Il Crawler completa l'articolo presente nel sito Megalinux
- <a href="http://www.megalinux.it/sviluppo-di-un-web-crawler-in-java-i-parte/" target="_blank">Sviluppo di un Web Crawler</a>.
+ <a href="http://www.megalinux.cloud/sviluppo-di-un-web-crawler-in-java-i-parte/" target="_blank">Sviluppo di un Web Crawler</a>.
 </p>
